@@ -1,17 +1,19 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
+import * as firebase from 'firebase';
 
-const LoadingScreen = () => {
+const LoadingScreen = ({navigation}) => {
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log('user => ', user);
+      navigation.navigate(user ? 'Home' : 'Login');
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        This is the bit lengthier text to show a paragraph length text on the
-        device just to make things simple to look
-      </Text>
-      <Text style={styles.text}>
-        This is the bit lengthier text to show a paragraph length text on the
-        device just to make things simple to look
-      </Text>
+      <Text style={styles.text}>Loading Screen</Text>
+      <ActivityIndicator size="large" color="#000" />
     </View>
   );
 };
@@ -25,6 +27,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 30,
+
     // fontFamily: 'PoppinsRegular',
   },
 });
