@@ -1,13 +1,26 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import * as firebase from 'firebase';
 
 const HomeScreen = () => {
+  const [email, setEmail] = useState('');
+  const [displayName, setDisplayName] = useState('');
+
+  useEffect(() => {
+    const {email, displayName} = firebase.auth().currentUser;
+    setEmail(email);
+    setDisplayName(displayName);
+  }, []);
+
+  signOutUser = () => firebase.auth().signOut();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home Screen</Text>
-      <Text style={styles.text}>
-        This is the bit lengthier text to show a paragraph length text cool
-      </Text>
+      <Text>Hi {email}!</Text>
+
+      <TouchableOpacity style={{marginTop: 30}} onPress={signOutUser}>
+        <Text>Logout</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -17,12 +30,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  text: {
-    fontSize: 30,
-    // fontWeight: 'bold',
-    // fontFamily: 'PoppinsRegular',
   },
 });
 

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import * as firebase from 'firebase';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -56,7 +56,9 @@ const LoginScreen = () => {
         <Text style={{color: '#fff', textTransform: 'uppercase'}}>Sign In</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={{alignItems: 'center', marginTop: 30}}>
+      <TouchableOpacity
+        style={{alignItems: 'center', marginTop: 30}}
+        onPress={() => navigation.navigate('Register')}>
         <Text style={{color: '#414959', fontSize: 13}}>
           New to SocialApp?{' '}
           <Text style={{color: '#E9446A', textTransform: 'uppercase'}}>
