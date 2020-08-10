@@ -53,10 +53,10 @@ const AppStack = () => (
   <Stack.Navigator
     initialRouteName="Loading"
     screenOptions={{gestureEnabled: false, headerShown: false}}>
+    <Stack.Screen name="Register" component={RegisterScreen}></Stack.Screen>
     <Stack.Screen name="Loading" component={LoadingScreen}></Stack.Screen>
     <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
     <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
-    <Stack.Screen name="Register" component={RegisterScreen}></Stack.Screen>
   </Stack.Navigator>
 );
 

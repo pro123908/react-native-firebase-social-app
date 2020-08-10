@@ -4,9 +4,13 @@ import {
   Text,
   StyleSheet,
   TextInput,
+  StatusBar,
+  Image,
+  LayoutAnimation,
   TouchableOpacity,
 } from 'react-native';
 import * as firebase from 'firebase';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const RegisterScreen = ({navigation}) => {
   const [name, setName] = useState('');
@@ -28,6 +32,22 @@ const RegisterScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content"></StatusBar>
+      <Image
+        source={require('../../assets/images/authHeader.png')}
+        style={{marginTop: -220, marginLeft: -50}}
+      />
+
+      <Image
+        source={require('../../assets/images/authFooter.png')}
+        style={{position: 'absolute', bottom: -325, right: -100}}
+      />
+
+      <TouchableOpacity
+        style={styles.backBtn}
+        onPress={() => navigation.goBack()}>
+        <Icon name="long-arrow-left" size={32} color="#fff" />
+      </TouchableOpacity>
       <Text
         style={styles.loginText}>{`Hello again\nSign Up to get Started`}</Text>
       <View style={styles.errorMessage}>
@@ -133,6 +153,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
+  },
+
+  backBtn: {
+    width: 40,
+    height: 40,
+    position: 'absolute',
+    top: 70,
+    left: 32,
+    borderRadius: 50,
+    // backgroundColor: 'rgba(21,22,48,0.1)',
+    backgroundColor: 'rgba(255,165,0,0.6)',
+
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

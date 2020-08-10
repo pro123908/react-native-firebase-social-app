@@ -5,6 +5,9 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  LayoutAnimation,
+  Image,
+  StatusBar,
 } from 'react-native';
 import * as firebase from 'firebase';
 
@@ -22,8 +25,25 @@ const LoginScreen = ({navigation}) => {
 
   console.log(errorMessage);
 
+  LayoutAnimation.easeInEaseOut();
+
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content"></StatusBar>
+      <Image
+        source={require('../../assets/images/authHeader.png')}
+        style={{marginTop: -180, marginLeft: -50}}
+      />
+
+      <Image
+        source={require('../../assets/images/authFooter.png')}
+        style={{position: 'absolute', bottom: -300, right: -100}}
+      />
+
+      <Image
+        source={require('../../assets/images/loginLogo.png')}
+        style={{marginTop: -110, alignSelf: 'center'}}
+      />
       <Text style={styles.loginText}>{`Hello again\nWelcome Back`}</Text>
       <View style={styles.errorMessage}>
         <Text style={styles.error}>
@@ -77,7 +97,7 @@ const styles = StyleSheet.create({
 
   loginText: {
     fontSize: 18,
-    marginTop: 30,
+    marginTop: -30,
     marginBottom: 10,
     textAlign: 'center',
   },
