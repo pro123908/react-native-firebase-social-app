@@ -30,12 +30,14 @@ const RegisterScreen = ({navigation}) => {
       .catch((err) => setErrorMessage(err));
   };
 
+  LayoutAnimation.easeInEaseOut();
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content"></StatusBar>
       <Image
         source={require('../../assets/images/authHeader.png')}
-        style={{marginTop: -220, marginLeft: -50}}
+        style={{marginTop: -150, marginLeft: -50}}
       />
 
       <Image
@@ -48,8 +50,23 @@ const RegisterScreen = ({navigation}) => {
         onPress={() => navigation.goBack()}>
         <Icon name="long-arrow-left" size={32} color="#fff" />
       </TouchableOpacity>
-      <Text
-        style={styles.loginText}>{`Hello again\nSign Up to get Started`}</Text>
+
+      <View
+        style={{
+          position: 'absolute',
+          top: 50,
+          alignItems: 'center',
+          width: '100%',
+        }}>
+        <Text
+          style={
+            styles.loginText
+          }>{`Hello again\nSign Up to get Started`}</Text>
+        <TouchableOpacity style={styles.avatar}>
+          <Icon name="plus" size={30} color="#fff" />
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.errorMessage}>
         <Text style={styles.error}>
           {errorMessage ? errorMessage.message : ''}
@@ -110,9 +127,10 @@ const styles = StyleSheet.create({
 
   loginText: {
     fontSize: 18,
-    marginTop: 30,
+    marginTop: 10,
     marginBottom: 10,
     textAlign: 'center',
+    color: '#fff',
   },
 
   errorMessage: {
@@ -159,14 +177,23 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     position: 'absolute',
-    top: 70,
-    left: 32,
+    top: 20,
+    left: 20,
     borderRadius: 50,
-    // backgroundColor: 'rgba(21,22,48,0.1)',
-    backgroundColor: 'rgba(255,165,0,0.6)',
+    backgroundColor: 'rgba(21,22,48,0.1)',
 
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: '#d3d3d3',
+    marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

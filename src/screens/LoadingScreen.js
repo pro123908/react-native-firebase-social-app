@@ -6,7 +6,7 @@ const LoadingScreen = ({navigation}) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       console.log('user => ', user);
-      navigation.navigate(user ? 'Home' : 'Register');
+      navigation.navigate(user ? 'Home' : 'Login');
     });
   }, []);
 
