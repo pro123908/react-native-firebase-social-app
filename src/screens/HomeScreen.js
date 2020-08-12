@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  LayoutAnimation,
+} from 'react-native';
 import * as firebase from 'firebase';
 
 const HomeScreen = () => {
@@ -7,12 +13,14 @@ const HomeScreen = () => {
   const [displayName, setDisplayName] = useState('');
 
   useEffect(() => {
-    const {email, displayName} = firebase.auth().currentUser;
-    setEmail(email);
-    setDisplayName(displayName);
+    // const {email, displayName} = firebase.auth().currentUser;
+    // setEmail(email);
+    // setDisplayName(displayName);
   }, []);
 
   signOutUser = () => firebase.auth().signOut();
+
+  LayoutAnimation.easeInEaseOut();
 
   return (
     <View style={styles.container}>
